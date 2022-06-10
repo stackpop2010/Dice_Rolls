@@ -1,0 +1,115 @@
+// DnD Dice Roller.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <string>
+#include <Windows.h>
+using namespace std;
+
+
+int main()
+{
+	//makes the font larger so the output is more accessible
+	static CONSOLE_FONT_INFOEX  fontex;
+	fontex.cbSize = sizeof(CONSOLE_FONT_INFOEX);
+	HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	GetCurrentConsoleFontEx(hOut, 0, &fontex);
+	fontex.FontWeight = 700;
+	fontex.dwFontSize.X = 36;
+	fontex.dwFontSize.Y = 36;
+	SetCurrentConsoleFontEx(hOut, NULL, &fontex);
+
+   //use time() to get an int value to use as a psuedorandom seed
+	int elapsed_seconds = time(nullptr);
+
+	//seed the random number generator
+	srand(elapsed_seconds);
+	
+
+	int fourSide, sixSide, eightSide, tenSide, twelveSide, twentySide;
+	string four = " ";
+	string six, eight, ten, twelve, twenty = " ";
+
+	//user inputs how many of each type of die to roll
+	cout << "How many 4 sided dice would you like to roll?:  ";
+	cin >> fourSide;
+	cout << "How many 6 sided dice would you like to roll?:  ";
+	cin >> sixSide;
+	cout << "How many 8 sided dice would you like to roll?:  ";
+	cin >> eightSide;
+	cout << "How many 10 sided dice would you like to roll?: ";
+	cin >> tenSide;
+	cout << "How many 12 sided dice would you like roll?: ";
+	cin >> twelveSide;
+	cout << "How many 20 sided dice would you like to roll?: ";
+	cin >> twentySide;
+	cout << endl << endl; 
+	
+	
+	//C++ completes random rolls
+	for (int i = 0; i < fourSide; i++) {
+		int die = rand() % 4;
+		die = die + 1;
+		four += to_string(die);
+		four += ", ";
+		
+	}
+
+	for (int i = 0; i < sixSide; i++) {
+		int die = rand() % 6;
+		die = die + 1;
+		six += to_string(die);
+		six += ", ";
+
+	}
+	
+	for (int i = 0; i < eightSide; i++) {
+		int die = rand() % 8;
+		die = die + 1;
+		eight += to_string(die);
+		eight += ", ";
+
+	}
+
+	for (int i = 0; i < tenSide; i++) {
+		int die = rand() % 10;
+		die = die + 1;
+		ten += to_string(die);
+		ten += ", ";
+
+	}
+
+	for (int i = 0; i < twelveSide; i++) {
+		int die = rand() % 12;
+		die = die + 1;
+		twelve += to_string(die);
+		twelve += ", ";
+
+	}
+
+	for (int i = 0; i < twentySide; i++) {
+		int die = rand() % 20;
+		die = die + 1;
+		twenty += to_string(die);
+		twenty += ", ";
+
+	}
+
+
+	//output of rolls:
+	cout << "Your 4 sided die rolls are: " << four << endl;
+	cout << "Your 6 sided die rolls are:  " << six << endl;
+	cout << "Your 8 sided die rolls are:  " << eight << endl;
+	cout << "Your 10 sided die rolls are: " << ten << endl;
+	cout << "Your 12 sided die rolls are: " << twelve << endl;
+	cout << "Your 20 sided die rolls are: " << twenty << endl << endl;
+	
+
+	cout << "Remember, the real treasure is the friends you made along the way";
+
+
+	return 0;
+}
+
